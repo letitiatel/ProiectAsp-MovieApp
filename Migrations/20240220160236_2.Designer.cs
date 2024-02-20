@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proiectasp.Data;
 
@@ -11,9 +12,11 @@ using Proiectasp.Data;
 namespace Proiectasp.Migrations
 {
     [DbContext(typeof(ProiectContext))]
-    partial class ProiectContextModelSnapshot : ModelSnapshot
+    [Migration("20240220160236_2")]
+    partial class _2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,38 +103,6 @@ namespace Proiectasp.Migrations
                     b.ToTable("Producers");
                 });
 
-            modelBuilder.Entity("Proiectasp.Models.ProducerDetails", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Born")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Known_for")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProducerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Spouse")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProducerId")
-                        .IsUnique();
-
-                    b.ToTable("ProducerDetailss");
-                });
-
             modelBuilder.Entity("Proiectasp.Models.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -216,17 +187,6 @@ namespace Proiectasp.Migrations
                     b.Navigation("Producer");
                 });
 
-            modelBuilder.Entity("Proiectasp.Models.ProducerDetails", b =>
-                {
-                    b.HasOne("Proiectasp.Models.Producer", "Producer")
-                        .WithOne("ProducerDetails")
-                        .HasForeignKey("Proiectasp.Models.ProducerDetails", "ProducerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Producer");
-                });
-
             modelBuilder.Entity("Proiectasp.Models.User", b =>
                 {
                     b.HasOne("Proiectasp.Models.Role", "Role")
@@ -246,9 +206,6 @@ namespace Proiectasp.Migrations
             modelBuilder.Entity("Proiectasp.Models.Producer", b =>
                 {
                     b.Navigation("Movies");
-
-                    b.Navigation("ProducerDetails")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Proiectasp.Models.Role", b =>

@@ -10,7 +10,8 @@ namespace Proiectasp.Models
         public int Rating { get; set; }
 
         public Producer Producer { get; set; }
+      
 
-        public Guid ProducerId { get; set; }
+        public ICollection<ModelsRelation> ModelsRelations { get; set; }
     }
 }

@@ -12,5 +12,6 @@ namespace Proiectasp.Models
 
         public ICollection<Movie>? Movies { get; set; }
 
+        public ProducerDetails ProducerDetails { get; set; }
     }
 }
