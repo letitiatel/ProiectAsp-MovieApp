@@ -44,5 +44,35 @@ namespace Proiectasp.Controllers
 
             return Ok(newMovie);
         }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(MovieDTO movieDto)
+        {
+            Movie movieById = await _proiectContext.Movies.FirstOrDefaultAsync(x => x.Name == movieDto.Name);
+            if (movieById == null)
+            {
+                return BadRequest("Object does not exist");
+            }
+
+            movieById.Name = movieDto.Name;
+            _proiectContext.Update(movieById);
+            await _proiectContext.SaveChangesAsync();
+
+            return Ok(movieById);
+        }
+
+        [HttpDelete("movie")]
+        public async Task<IActionResult> DeleteMovie(MovieDTO movieDto)
+
+        {
+            Movie movieById = await _proiectContext.Movies.FirstOrDefaultAsync(x => x.Name == movieDto.Name);
+            if (movieById == null)
+            {
+                return BadRequest("Object does not exist");
+            }
+
+            _proiectContext.Movies.Remove(movieById);
+            return NoContent();
+        }
     }
 }

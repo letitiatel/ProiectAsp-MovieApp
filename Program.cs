@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proiectasp.Data;
+using Proiectasp.Helpers.Extensions;
+using Proiectasp.Helpers.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,13 @@ builder.Services.AddDbContext<ProiectContext>(options => options.UseSqlServer(bu
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//builder.Services.AddRepositories();
+//builder.Services.AddServices();
+
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
+//SeedData(app);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -27,3 +35,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

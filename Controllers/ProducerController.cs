@@ -46,10 +46,10 @@ namespace Proiectasp.Controllers
             return Ok(newProducer);
         }
 
-        [HttpPost("update")]
+        [HttpPut("update")]
         public async Task<IActionResult> Update(ProducerDTO producerDto)
         {
-            Producer producerById = await _proiectContext.Producers.FirstOrDefaultAsync(x => x.Id == producerDto.Id1);
+            Producer producerById = await _proiectContext.Producers.FirstOrDefaultAsync(x => x.LastName == producerDto.LastName);
             if (producerById == null)
             {
                 return BadRequest("Object does not exist");
@@ -66,7 +66,7 @@ namespace Proiectasp.Controllers
         public async Task<IActionResult> DeleteProducer(ProducerDTO producerDto)
         
         {
-            Producer producerById = await _proiectContext.Producers.FirstOrDefaultAsync(x => x.Id == producerDto.Id1);
+            Producer producerById = await _proiectContext.Producers.FirstOrDefaultAsync(x => x.LastName == producerDto.LastName);
             if (producerById == null)
             {
                 return BadRequest("Object does not exist");
