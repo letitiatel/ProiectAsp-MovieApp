@@ -4,7 +4,7 @@ using Proiectasp.Helpers.JwtUtils;
 using Proiectasp.Models;
 using Proiectasp.Models.DTOs;
 using Proiectasp.Repositories.UserRepository;
-//using BCryptNet = BCrypt.Net.BCrypt;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace Proiectasp.Services.UserService
 {
